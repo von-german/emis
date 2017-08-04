@@ -1,5 +1,5 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<% provide(:title, "Edit Profile") %>
+<h1>Update Your Profile</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -15,7 +15,7 @@
       <%= f.label :address %>
       <%= f.text_field :address, class: 'form-control' %>
 
-      <%= f.label :dateOfBirth %>
+      <%= f.label :dateOfBirth, "Date of Birth" %>
       <%= f.date_field :dob, class: 'form-control' %>
 
       <%= f.label :insurance %>
