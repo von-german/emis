@@ -4,10 +4,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    authorize User
   end
 
   def show
     @user = User.find(params[:id])
+    authorize @user
   end
 
   def new
@@ -29,7 +31,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    @user = User.find(params[:id])
+    @user.attributes = user_params
+    if @user.save(validate: false)
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -42,7 +46,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                     :password_confirmation,
-                                    :ins, :address, :dob)
+                                    :ins, :address, :dob, :role)
     end
 
     def logged_in_user
