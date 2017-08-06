@@ -27,10 +27,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
+    authorize @user
     @user = User.find(params[:id])
     @user.attributes = user_params
     if @user.save(validate: false)
@@ -39,6 +37,13 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    authorize user
+    user.destroy
+    redirect_to users_path, :notice => "User Deleted"
   end
 
   private
