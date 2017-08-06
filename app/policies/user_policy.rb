@@ -7,11 +7,14 @@ class UserPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.admin? || @current_user.receptionist? ||
+    @current_user.nurse? || @current_user.doctor?
   end
 
   def show?
-    @current_user.admin? || @current_user == @user
+    @current_user.admin? || @current_user == @user ||
+    @current_user.receptionist? || @current_user.nurse? ||
+    @current_user.doctor?
   end
 
   def update?

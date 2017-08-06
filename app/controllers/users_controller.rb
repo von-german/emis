@@ -40,8 +40,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize User
     user = User.find(params[:id])
-    authorize user
     user.destroy
     redirect_to users_path, :notice => "User Deleted"
   end
