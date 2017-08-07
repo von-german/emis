@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   #before_action :authenticate_user
 
   def index
-    @users = User.all
+    @users = User.where(role: 0..1)
     @conversations = Conversation.all
     authorize Conversation
   end
