@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  get 'help' => 'static_pages#help'
+  get 'help' => 'conversations#index'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   get 'signup' => 'users#new'
@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   post   'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :users
+  resources :conversations do
+    resources :messages
+  end
 end
