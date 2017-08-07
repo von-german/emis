@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20170807001825) do
     t.date "dob"
     t.string "address"
     t.integer "role"
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

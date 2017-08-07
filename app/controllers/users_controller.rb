@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome #{@user.role}!"
       redirect_to @user
     else
       render 'new'
@@ -29,9 +29,7 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    @user = User.find(params[:id])
-    @user.attributes = user_params
-    if @user.save(validate: false)
+    if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -64,6 +62,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(root_url) unless current_user?(@user) || current_user.admin?
     end
 end

@@ -5,6 +5,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#user_profile_page {
+  list-style-type:none;
+  padding:0px;
+  margin:0px;
+  text-align:center;
+}
+
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
