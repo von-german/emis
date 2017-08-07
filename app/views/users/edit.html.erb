@@ -24,7 +24,7 @@
       <%= f.label :insurance %>
       <%= f.text_field :ins, class: 'form-control' %>
 
-      <% if @current_user.admin? %>
+      <% if @current_user.admin? && @current_user != @user %>
       <%= f.label :role %>
       <%= f.text_field :role, class: 'form-control' %>
       <% end %>
