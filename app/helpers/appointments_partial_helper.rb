@@ -1,10 +1,17 @@
 module AppointmentsPartialHelper
   def appointment_heading(appointment)
     if current_page?(appointment_path(appointment))
-#can add doctor as third argument to content_tag
-      content_tag(:h3, link_to(appointment.id) )
-#    else
-#      render partial: "appointments/appointment_short", locals: { appointment: appointment }
+      content_tag(:h3, link_to("Appointment #{show_appointment_id(appointment)}", appointment_path(appointment.id) ) )
+    else
+      render partial: "appointments/appointment_short", locals: { appointment: appointment }
+    end
+  end
+
+  def show_appointment_id(appointment)
+    if current_page?(appointments_path)
+      link_to appointment.id, appointment_path(appointment)
+    else
+      appointment.id
     end
   end
 

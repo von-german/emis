@@ -4,7 +4,7 @@ module AppointmentsCalendarHelper
   end
 
   def appointment_position(appointment)
-    "top: #{ ( ( (appointment.appointment_time - appointment.appointment_time.midnight)/3600 - 8 ) * 40 ) + 28}px;"
+    "top: #{ (((appointment.appointment_time - appointment.appointment_time.midnight)/3600 - 8) * 40) + 28}px;"
   end
 
   def appointment_height(appointment)
@@ -12,9 +12,13 @@ module AppointmentsCalendarHelper
   end
 
   def highlight_appointment(appointment)
-    if current_page?( appointment_path(appointment)) || current_page?( edit_appointment_path(appointment) )
+    if current_page?(appointment_path(appointment)) || current_page?(edit_appointment_path(appointment))
       " highlight"
     end
+  end
+
+  def appointment_text(appointment)
+    "<span class='name'>#{appointment.id}</span>".html_safe
   end
 
   def from_to(appointment)
