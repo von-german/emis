@@ -1,0 +1,11 @@
+<!--p id="notice"><%= notice %></p-->
+
+<!--% provide(:title, @receptionist.name) %-->
+<h1><%= @nurse.name %></h1>
+<ul id="receptionist_profile_page">
+  <li><%= "Email: #{@nurse.email}" %></li>
+  <li><%= "Role: #{@nurse.role}" %></li>
+</ul>
+
+<%= link_to 'Edit', nurse_path(@nurse) %> |
+<%= link_to 'Back', nurses_path %>

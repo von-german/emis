@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :doctors
+  resources :nurses
+  resources :receptionists
   root 'sessions#new'
   get 'home' => 'static_pages#home'
   get 'help' => 'static_pages#help'
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
   get    'login' => 'sessions#new'
   post   'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  get 'receptionist/new' => 'receptionist#new'
+  post 'receptionist/new' => 'receptionist#create'
   resources :users
   resources :conversations do
     resources :messages
