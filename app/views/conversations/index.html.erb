@@ -20,7 +20,7 @@
   <h3>All Users</h3>
   <div class="ui list">
     <% @users.each do |user| %>
-      <% if user.id != current_user.id%>
+      <% if user.role != current_user.role%>
         <div class="item">
           <%= user.name %>
           <%= link_to 'Message me!',
