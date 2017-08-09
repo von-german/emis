@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-
+  has_many :appointments
   enum role: [:user, :receptionist, :nurse, :doctor, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   def name=(s)
     write_attribute(:name, s.to_s.titleize)
+  end
+
+  def upcoming_appointments
+    appointments.order(appointment_time: :desc).select { |a| a.appointment_time > (DateTime.now) }
   end
 
   before_save { self.email = email.downcase }

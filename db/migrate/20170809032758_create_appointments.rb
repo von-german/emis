@@ -1,10 +1,9 @@
 class CreateAppointments < ActiveRecord::Migration[5.1]
   def change
     create_table :appointments do |t|
-      t.string :patient_name
-      t.string :doctor_name
-      t.datetime :start_time
-      t.datetime :end_time
+      t.datetime :appointment_time
+      t.integer :duration
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
