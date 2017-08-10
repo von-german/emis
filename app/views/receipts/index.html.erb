@@ -1,0 +1,17 @@
+<% provide(:title, "Receipts") %>
+<h1>Receipts</h1>
+<h2><%= link_to "Create Receipt", new_receipt_path %></h2>
+
+<h3>All Receipts</h3>
+<div class="box">
+  <table class="table-minimal">
+    <tbody>
+      <% @receipts.each do |receipt| %>
+      <tr>
+        <%= render receipt %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

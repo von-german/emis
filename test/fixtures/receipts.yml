@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount_owed: 9.99
+  items: MyString
+  user: one
+
+two:
+  amount_owed: 9.99
+  items: MyString
+  user: two

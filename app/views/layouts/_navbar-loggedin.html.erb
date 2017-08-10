@@ -1,19 +1,20 @@
 <% if not current_user.user? %>
   <li><%= link_to "Users", users_path %></li>
 <% end %>
+<% if current_user.receptionist? %>
+<li><%= link_to "Appointments", appointments_path %></li>
+<li><%= link_to "Diagnoses", diagnoses_path %></li>
+<li><%= link_to "Receipts", receipts_path %></li>
+<% end %>
+<% if current_user.user? || current_user.receptionist? %>
+  <li><%= link_to "Messages", conversations_path %></li>
+<% end %>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     Account <b class="caret"></b>
   </a>
   <ul class="dropdown-menu">
   <li><%= link_to "Profile", current_user %></li>
-  <% if current_user.user? || current_user.receptionist? %>
-    <li><%= link_to "Messages", conversations_path %></li>
-  <% end %>
-  <% if current_user.receptionist? %>
-  <li><%= link_to "Appointments", appointments_path %></li>
-  <li><%= link_to "Diagnoses", diagnoses_path %></li>
-  <% end %>
   <li><%= link_to "Settings", edit_user_path(current_user) %></li>
   <li class="divider"></li>
   <li>

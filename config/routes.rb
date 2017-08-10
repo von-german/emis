@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'static_pages#home'
   get 'home' => 'static_pages#home'
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'schedule_appointment' => 'appointments#new'
   post 'schedule_appointment' => 'appointments#create'
-  resources :users, :appointments, :diagnoses
+  resources :users, :appointments, :diagnoses, :receipts
   resources :conversations do
     resources :messages
   end
