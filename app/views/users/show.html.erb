@@ -2,8 +2,12 @@
 <h1><%= @user.name %></h1>
 <ul id="user_profile_page">
   <li><%= "Email: #{@user.email}" %></li>
-  <li><%= "Address: #{@user.address}" %></li>
-  <li><%= "Date of Birth: #{@user.dob}" %></li>
-  <li><%= "Insurance: #{@user.ins}" %></li>
-  <li><%= "User Type: #{@user.role}"%></li>
+  <% if @user.user? %>
+    <li><%= "Address: #{@user.address}" %></li>
+    <li><%= "Date of Birth: #{@user.dob}" %></li>
+    <li><%= "Insurance: #{@user.ins}" %></li>
+  <% end %>
+  <% if not @user.user? %>
+    <li><%= "Account Type: #{@user.role}"%></li>
+  <% end %>
 </ul>
