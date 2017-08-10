@@ -1,12 +1,12 @@
 class DiagnosesController < ApplicationController
   def index
-    authorize User
     @diagnoses = Diagnosis.all
+    authorize Diagnosis
   end
 
   def show
-    authorize User
     @diagnosis = Diagnosis.find(params[:id])
+    authorize Diagnosis
   end
 
   def new
