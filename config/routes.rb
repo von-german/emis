@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'schedule_appointment' => 'appointments#new'
   post 'schedule_appointment' => 'appointments#create'
-  resources :users, :appointments
+  resources :users, :appointments, :diagnoses
   resources :conversations do
     resources :messages
   end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prescription: MyString
+  condition: MyString
+  user: one
+
+two:
+  prescription: MyString
+  condition: MyString
+  user: two

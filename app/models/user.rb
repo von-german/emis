@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :appointments
+  has_many :diagnoses
   enum role: [:user, :receptionist, :nurse, :doctor, :admin]
   after_initialize :set_default_role, :if => :new_record?
 

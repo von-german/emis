@@ -1,0 +1,14 @@
+<td>
+  <ul>
+    <%= link_to diagnosis.id, diagnosis %>
+  </ul>
+</td>
+<td>
+  <ul id="diagnosis_options">
+    <% if current_user.receptionist? %>
+    <%= link_to("Delete Diagnosis", diagnosis_path(diagnosis.id), :data => { :confirm => "Are you sure?" },
+        :method => :delete, :class => 'button') %>
+    <%= link_to("Edit Diagnosis", edit_diagnosis_path(diagnosis.id), :class => 'button') %>
+    <% end %>
+  </ul>
+</td>
