@@ -9,6 +9,9 @@
 <% if current_user.user? || current_user.receptionist? %>
   <li><%= link_to "Messages", conversations_path %></li>
 <% end %>
+<% if current_user.user? || current_user.doctor? %>
+  <li><%= link_to "Diagnose2", holders_path %></li>
+<% end %>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
     Account <b class="caret"></b>
