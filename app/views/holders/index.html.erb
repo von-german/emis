@@ -9,7 +9,11 @@
             <% recipient = User.find(holder.sender_id) %>
           <% end %>
           <div class="item">
-          <%= link_to recipient.name, holder_prescriptions_path(holder)%>
+          <%if current_user.role == @doctor%>
+          Patient :<%= link_to recipient.name, holder_prescriptions_path(holder)%>
+          <%else %>
+          Doctor :<%= link_to recipient.name, holder_prescriptions_path(holder)%> 
+          <%end%>
           </div>
         <% end %>
       <% end %>
