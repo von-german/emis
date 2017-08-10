@@ -15,18 +15,20 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :address %>
-      <%= f.text_field :address, class: 'form-control' %>
+      <% if @user.user? %>
+        <%= f.label :address %>
+        <%= f.text_field :address, class: 'form-control' %>
 
-      <%= f.label :dateOfBirth, "Date of Birth" %>
-      <%= f.date_field :dob, class: 'form-control' %>
+        <%= f.label :dateOfBirth, "Date of Birth" %>
+        <%= f.date_field :dob, class: 'form-control' %>
 
-      <%= f.label :insurance %>
-      <%= f.text_field :ins, class: 'form-control' %>
+        <%= f.label :insurance %>
+        <%= f.text_field :ins, class: 'form-control' %>
+      <% end %>
 
       <% if @current_user.admin? && @current_user != @user %>
-      <%= f.label :role %>
-      <%= f.text_field :role, class: 'form-control' %>
+        <%= f.label :role %>
+        <%= f.text_field :role, class: 'form-control' %>
       <% end %>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>

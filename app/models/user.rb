@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :test_results
+  has_many :diagnoses
   has_many :appointments
   has_many :diagnoses
   enum role: [:user, :receptionist, :nurse, :doctor, :admin]

@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170810143558) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +80,15 @@ ActiveRecord::Schema.define(version: 20170810143558) do
     t.index ["user_id"], name: "index_receipts_on_user_id"
   end
 
+  create_table "test_results", force: :cascade do |t|
+    t.string "test_type"
+    t.string "test_info"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_test_results_on_user_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -95,4 +105,5 @@ ActiveRecord::Schema.define(version: 20170810143558) do
   add_foreign_key "appointments", "users"
   add_foreign_key "diagnoses", "users"
   add_foreign_key "receipts", "users"
+  add_foreign_key "test_results", "users"
 end

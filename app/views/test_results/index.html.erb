@@ -1,0 +1,17 @@
+<% provide(:title, "Test Results") %>
+<h1>Test Results</h1>
+<h2><%= link_to "Create Result", new_test_result_path %></h2>
+
+<h3>All Results</h3>
+<div class="box">
+  <table class="table-minimal">
+    <tbody>
+      <% @test_results.each do |test_result| %>
+      <tr>
+        <%= render test_result %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
