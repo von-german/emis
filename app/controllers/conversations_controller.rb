@@ -4,6 +4,7 @@ class ConversationsController < ApplicationController
   def index
     @users = User.where(role: 0..1)
     @conversations = Conversation.all
+    @receptionist ='receptionist'
     authorize Conversation
   end
 
