@@ -10,7 +10,7 @@
       <%= f.number_field :amount_owed, class: :text_field, step: :any %>
 
       <%= f.label :items %>
-      <%= f.text_field :items, class: 'form-control' %>
+      <%= f.text_area :items, class: 'form-control' %>
 
       <%= f.submit "Create receipt", class: "btn btn-primary" %>
     <% end %>
