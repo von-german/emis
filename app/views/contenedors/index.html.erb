@@ -1,0 +1,40 @@
+<% provide(:title, "Test Results") %>
+<div class="ui segment">
+  <h3>Test Results</h3>
+  <div class="ui list">
+      <% @contenedors.each do |contenedor| %>
+        <% if contenedor.sender_id == current_user.id || contenedor.recipient_id == current_user.id %>
+          <% if contenedor.sender_id == current_user.id %>
+            <% recipient = User.find(contenedor.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(contenedor.sender_id) %>
+          <% end %>
+          <div class="item">
+          <%if current_user.role == @nurse%>
+           Past test_results: <%= link_to recipient.name, contenedor_test_results_path(contenedor)%>
+          <%else %>
+           Test results from nurse :<%= link_to sender.name, contenedor_test_results_path(contenedor)%>
+          <%end%>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
+<div class="ui segment">
+  <%if current_user.role == @nurse%>
+  <h3>All Patients</h3>
+  <div class="ui list">
+    <% @users.each do |user| %>
+      <% if user.role%>
+        <div class="item">
+          Send test result to:
+          <%= link_to user.name,
+              contenedors_path(sender_id: current_user.id,
+                                recipient_id: user.id), method: 'post'%>
+        </div>
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>

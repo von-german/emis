@@ -21,4 +21,7 @@ Rails.application.routes.draw do
   resources :containers do
     resources :receipts
   end
+  resources :contenedors do 
+    resources :test_results
+  end
 end

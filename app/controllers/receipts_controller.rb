@@ -8,7 +8,7 @@ class ReceiptsController < ApplicationController
     @receipts = @container.receipts
       if @receipts.length > 10
         @over_ten = true
-        @messsages = @receipts[-10..-1]
+        @receipts = @receipts[-10..-1]
       end
 
       if params[:m]

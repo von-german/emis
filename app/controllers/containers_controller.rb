@@ -7,11 +7,7 @@ class ContainersController < ApplicationController
   end
 
   def create
-    if Container.between(params[:sender_id],params[:recipient_id]).present?
-      @container = Container.between(params[:sender_id], params[:recipient_id]).first
-    else
-      @container = Container.create!(container_params)
-    end
+    @container = Container.create!(container_params)
     redirect_to container_receipts_path(@container)
   end
 
