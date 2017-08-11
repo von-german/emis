@@ -1,5 +1,7 @@
 <div class="appointment">
   <%= appointment_heading(appointment) %>
   <%= appointment_details(appointment) %>
+  <% if current_user.receptionist? %>
   <%= appointment_edit_delete_links(appointment) %>
+  <% end %>
 </div>

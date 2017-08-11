@@ -22,6 +22,10 @@ class AppointmentPolicy < ApplicationPolicy
     @current_user.receptionist?
   end
 
+  def edit
+    @current_user.receptionist?
+  end
+
   def update?
     @current_user.receptionist?
   end

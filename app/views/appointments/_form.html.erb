@@ -2,6 +2,12 @@
 <%= form_for appointment do |f| %>
   <div class="field">
     <p>
+      <%= f.label :patient %>
+      <%= f.text_field :user_id, class: 'form-control' %>
+    </p>
+  </div>
+  <div class="field">
+    <p>
       <%= label_tag "appointment[appointment_time][date]", "Date" %>
       <%= text_field_tag "appointment[appointment_time][date]", appointment_date(appointment), class: "datepicker" %>
     </p>
