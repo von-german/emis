@@ -9,7 +9,7 @@
   <li><%= link_to "Test Results", test_results_path %></li>
 <% end %>
 <% if current_user.doctor? || current_user.user? %>
-  <li><%= link_to "Diagnoses", holders_path %></li>
+  <li><%= link_to "Diagnosis", holders_path %></li>
 <% end %>
 <% if current_user.user? || current_user.receptionist? %>
   <li><%= link_to "Messages", conversations_path %></li>
