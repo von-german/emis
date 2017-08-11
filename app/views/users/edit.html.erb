@@ -8,7 +8,7 @@
       <% if @current_user == @user || @current_user.receptionist? %>
         <h1>Update Profile</h1>
         <%= f.label :name %>
-        <%= f.email_field :name, class: 'form-control' %>
+        <%= f.text_field :name, class: 'form-control' %>
 
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control' %>
