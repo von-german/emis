@@ -1,49 +1,44 @@
 class ReceiptsController < ApplicationController
+	before_action do
+    @container = Container.find(params[:container_id])
+  end
+
   def index
-    @receipts = Receipt.all
-  end
+    @receptionist = 'receptionist'
+    @receipts = @container.receipts
+      if @receipts.length > 10
+        @over_ten = true
+        @messsages = @receipts[-10..-1]
+      end
 
-  def show
-    @receipt = Receipt.find(params[:id])
-  end
+      if params[:m]
+        @over_ten = false
+        @receipts = @container.receipts
+      end
 
-  def new
-    @receipt = Receipt.new
-  end
+      if @receipts.last
+        if @receipts.last.user_id != current_user.id
+          @receipts.last.read = true;
+        end
+      end
 
-  def create
-    @receipt = Receipt.new(receipt_params)
-    if @receipt.save
-      flash.now[:success] = "Receipt created!"
-      redirect_to @receipt
-    else
-      render 'new'
+      @receipt = @container.receipts.new
     end
-  end
 
-  def edit
-    @receipt = Receipt.find(params[:id])
-  end
-
-  def update
-    @receipt = Receipt.find(params[:id])
-    if @receipt.update_attributes(receipt_params)
-      flash[:success] = "Receipt updated"
-      redirect_to @receipt
-    else
-      render 'edit'
+    def new
+      @receipt = @container.receipts.new
     end
-  end
 
-  def destroy
-    @receipt = Receipt.find(params[:id])
-    @receipt.destroy
-    redirect_to receipts_path, :notice => 'Receipt deleted'
-  end
-
-  private
-
-    def receipt_params
-      params.require(:receipt).permit(:amount_owed, :items, :user_id)
+    def create
+      @receipt = @container.receipts.new(receipt_params)
+      if @receipt.save
+        redirect_to container_receipts_path(@container)
+      end
     end
+
+
+    private
+      def receipt_params
+        params.require(:receipt).permit(:price,:items, :user_id)
+      end
 end

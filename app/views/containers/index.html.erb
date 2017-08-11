@@ -1,0 +1,39 @@
+<div class="ui segment">
+  <h3>Receipts</h3>
+  <div class="ui list">
+      <% @containers.each do |container| %>
+        <% if container.sender_id == current_user.id || container.recipient_id == current_user.id %>
+          <% if container.sender_id == current_user.id %>
+            <% recipient = User.find(container.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(container.sender_id) %>
+          <% end %>
+          <div class="item">
+          <%if current_user.role == @receptionist%>
+           Past receipt from: <%= link_to recipient.name, container_receipts_path(container)%>
+          <%else %>
+            <%= link_to 'receipt', container_receipts_path(container)%>
+          <%end%>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
+<div class="ui segment">
+  <%if current_user.role == @receptionist%>
+  <h3>All Patients</h3>
+  <div class="ui list">
+    <% @users.each do |user| %>
+      <% if user.role%>
+        <div class="item">
+          Send receipt to: 
+          <%= link_to user.name,
+              containers_path(sender_id: current_user.id,
+                                recipient_id: user.id), method: 'post'%>
+        </div>
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>

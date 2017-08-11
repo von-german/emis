@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810180700) do
+ActiveRecord::Schema.define(version: 20170811014133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20170810180700) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "containers", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -62,11 +69,14 @@ ActiveRecord::Schema.define(version: 20170810180700) do
   end
 
   create_table "receipts", force: :cascade do |t|
-    t.decimal "amount_owed"
+    t.string "price"
     t.string "items"
+    t.bigint "container_id"
     t.bigint "user_id"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_receipts_on_container_id"
     t.index ["user_id"], name: "index_receipts_on_user_id"
   end
 
@@ -93,6 +103,5 @@ ActiveRecord::Schema.define(version: 20170810180700) do
   end
 
   add_foreign_key "appointments", "users"
-  add_foreign_key "receipts", "users"
   add_foreign_key "test_results", "users"
 end

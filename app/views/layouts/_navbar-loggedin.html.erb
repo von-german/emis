@@ -3,7 +3,7 @@
 <% end %>
 <% if current_user.receptionist? || current_user.user? %>
   <li><%= link_to "Appointments", appointments_path %></li>
-  <li><%= link_to "Receipts", receipts_path %></li>
+  <li><%= link_to "Receipts", containers_path %></li>
 <% end %>
 <% if current_user.nurse? || current_user.user? %>
   <li><%= link_to "Test Results", test_results_path %></li>

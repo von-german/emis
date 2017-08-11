@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   resources :holders do
     resources :prescriptions
   end
+  resources :containers do
+    resources :receipts
+  end
 end
