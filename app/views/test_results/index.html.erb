@@ -1,18 +1,44 @@
-<% provide(:title, "Test Results") %>
-<h1>Test Results</h1>
-<h2><%= link_to "Create Result", new_test_result_path %></h2>
+<% if @over_ten %>
+  <%= link_to 'Show Previous', '?m=all' %>
+<% end %>
 
-<h3>All Results</h3>
-<div class="bigbox" id="test_results_display">
-<div class="box">
-  <table class="table-minimal">
-    <tbody>
-      <% @test_results.each do |test_result| %>
-      <tr>
-        <%= render test_result %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="ui segment">
+  <% @test_results.each do |test_result| %>
+    <% if test_result.test_type %>
+      <% user = User.find(test_result.user_id) %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong> test_result from: <%= user.name%></strong>.<br>
+            <strong>Date of Visit:</strong></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+              <strong>  test type : </strong><%= test_result.test_type %><br>
+              <strong> test info: </strong><%= test_result.test_info %>
+            </div>
+            <div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
-</div>
+<% if current_user.role == @nurse %>
+<%= form_for [@contenedor, @test_result], html: {class: "ui reply form"} do |f| %>
+  <div class="field">
+
+
+      <%= f.label :test_type %>
+      <%= f.text_field :test_type, class: 'form-control' %>
+
+      <%= f.label :test_info %>
+      <%= f.text_area :test_info, class: 'form-control' %>
+  </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div>
+    <%= f.submit "Create test_result", class: "btn btn-primary" %>
+  </div>
+  <%end%>
+<% end %>

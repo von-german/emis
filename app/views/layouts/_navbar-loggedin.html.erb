@@ -5,8 +5,9 @@
   <li><%= link_to "Appointments", appointments_path %></li>
   <li><%= link_to "Receipts", containers_path %></li>
 <% end %>
+
 <% if current_user.nurse? || current_user.user? %>
-  <li><%= link_to "Test Results", test_results_path %></li>
+    <li><%= link_to "Test Results", contenedors_path %></li>
 <% end %>
 <% if current_user.doctor? || current_user.user? %>
   <li><%= link_to "Diagnosis", holders_path %></li>

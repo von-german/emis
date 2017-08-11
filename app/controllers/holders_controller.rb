@@ -9,11 +9,7 @@ class HoldersController < ApplicationController
   end
 
   def create
-    if Holder.between(params[:sender_id],params[:recipient_id]).present?
-      @holder = Holder.between(params[:sender_id], params[:recipient_id]).first
-    else
-      @holder = Holder.create!(holder_params)
-    end
+    @holder = Holder.create!(holder_params)
     redirect_to holder_prescriptions_path(@holder)
   end
 

@@ -1,49 +1,44 @@
 class TestResultsController < ApplicationController
+		before_action do
+    @contenedor = Contenedor.find(params[:contenedor_id])
+  end
+
   def index
-    @test_results = TestResult.all
-  end
+    @nurse = 'nurse'
+    @test_results = @contenedor.test_results
+      if @test_results.length > 10
+        @over_ten = true
+        @test_results= @test_results[-10..-1]
+      end
 
-  def show
-    @test_result = TestResult.find(params[:id])
-  end
+      if params[:m]
+        @over_ten = false
+        @test_results = @contenedor.test_results
+      end
 
-  def new
-    @test_result = TestResult.new
-  end
+      if @test_results.last
+        if @test_results.last.user_id != current_user.id
+          @test_results.last.read = true;
+        end
+      end
 
-  def create
-    @test_result = TestResult.new(test_result_params)
-    if @test_result.save
-      flash[:success] = 'Result saved!'
-      redirect_to @test_result
-    else
-      render 'new'
+      @test_result = @contenedor.test_results.new
     end
-  end
 
-  def edit
-    @test_result = TestResult.find(params[:id])
-  end
-
-  def update
-    @test_result = TestResult.find(params[:id])
-    if @test_result.update_attributes(test_result_params)
-      flash[:success] = 'Result updated!'
-      redirect_to @test_result
-    else
-      render 'edit'
+    def new
+      @test_result = @contenedor.test_results.new
     end
-  end
 
-  def destroy
-    @test_result = TestResult.find(params[:id])
-    @test_result.destroy
-    redirect_to test_results_path :notice => 'Result deleted'
-  end
-
-  private
-
-    def test_result_params
-      params.require(:test_result).permit(:test_type, :test_info, :user_id)
+    def create
+      @test_result = @contenedor.test_results.new(test_result_params)
+      if @test_result.save
+        redirect_to contenedor_test_results_path(@contenedor)
+      end
     end
+
+
+    private
+      def test_result_params
+        params.require(:test_result).permit(:test_type,:test_info, :user_id)
+      end
 end

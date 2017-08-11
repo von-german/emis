@@ -4,7 +4,6 @@ class Holder < ApplicationRecord
 
 has_many :prescriptions, dependent: :destroy
 
-validates_uniqueness_of :sender_id, :scope => :recipient_id
 
 scope :between, -> (sender_id,recipient_id) do
     where("(holders.sender_id = ? AND holders.recipient_id =?) OR
