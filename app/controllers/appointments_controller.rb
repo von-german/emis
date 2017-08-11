@@ -3,8 +3,12 @@ class AppointmentsController < ApplicationController
   before_action :set_appointments, only: [:index, :show, :edit]
 
   def index
-    @upcoming_appointments = current_user.upcoming_appointments
     authorize Appointment
+    if current_user.receptionist?
+      @upcoming_appointments = Appointment.all
+    else
+      @upcoming_appointments = current_user.upcoming_appointments
+    end
   end
 
   def show
@@ -19,7 +23,7 @@ class AppointmentsController < ApplicationController
 
   def create
     authorize Appointment
-    @appointment = Appointment.new(appointment_params.merge(user_id: current_user.id))
+    @appointment = Appointment.new(appointment_params)
     if @appointment.valid?
       @appointment.save
       redirect_to appointments_path
@@ -31,6 +35,8 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    @appointment = Appointment.find(params[:id])
+    authorize Appointment
   end
 
   def update
@@ -52,7 +58,7 @@ class AppointmentsController < ApplicationController
   private
 
   def set_appointment
-    @appointment = current_user.appointments.find_by(id: params[:id])
+    @appointment = Appointment.find(params[:id])
     if @appointment.nil?
       flash[:error] = "Appointment not found."
       redirect_to appointments_path
@@ -64,7 +70,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(appointment_time: [:date, :hour, :min], duration: [:hour, :min])
+    params.require(:appointment).permit(:user_id, appointment_time: [:date, :hour, :min], duration: [:hour, :min])
   end
 
 end

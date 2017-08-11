@@ -9,7 +9,7 @@ module AppointmentsPartialHelper
 
   def show_appointment_id(appointment)
     if current_page?(appointments_path)
-      link_to appointment.id, appointment_path(appointment)
+      link_to appointment.id, appointment_path(@appointment)
     else
       appointment.id
     end
