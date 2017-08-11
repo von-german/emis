@@ -10,9 +10,9 @@
           <% end %>
           <div class="item">
           <%if current_user.role == @doctor%>
-          Patient :<%= link_to recipient.name, holder_prescriptions_path(holder)%>
+            <%= link_to recipient.name, holder_prescriptions_path(holder)%>
           <%else %>
-          Doctor :<%= link_to recipient.name, holder_prescriptions_path(holder)%> 
+            <%= link_to recipient.name, holder_prescriptions_path(holder)%>
           <%end%>
           </div>
         <% end %>
