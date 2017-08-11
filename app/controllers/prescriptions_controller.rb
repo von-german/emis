@@ -4,6 +4,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def index
+    authorize Holder
     @doctor = 'doctor'
     @prescriptions = @holder.prescriptions
       if @prescriptions.length > 10
@@ -36,8 +37,9 @@ class PrescriptionsController < ApplicationController
       end
     end
 
+
     private
       def prescription_params
         params.require(:prescription).permit(:drug,:condition, :user_id)
       end
-end
+    end

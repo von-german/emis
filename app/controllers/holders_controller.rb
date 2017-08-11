@@ -2,6 +2,7 @@ class HoldersController < ApplicationController
 	#before_action :authenticate_user
 
   def index
+    authorize Holder
     @users = User.where(role: 0)
     @holders = Holder.all
     @doctor ='doctor'
@@ -21,4 +22,3 @@ class HoldersController < ApplicationController
       params.permit(:sender_id, :recipient_id)
     end
 end
-
