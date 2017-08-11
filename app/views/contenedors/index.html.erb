@@ -11,9 +11,9 @@
           <% end %>
           <div class="item">
           <%if current_user.role == @nurse%>
-           Past test_results: <%= link_to recipient.name, contenedor_test_results_path(contenedor)%>
+           Past Test Results: <%= link_to recipient.name, contenedor_test_results_path(contenedor)%>
           <%else %>
-           Test results from nurse :<%= link_to sender.name, contenedor_test_results_path(contenedor)%>
+           Test Results From <%= link_to recipient.name, contenedor_test_results_path(contenedor)%>
           <%end%>
           </div>
         <% end %>
@@ -28,7 +28,7 @@
     <% @users.each do |user| %>
       <% if user.role%>
         <div class="item">
-          Send test result to:
+          Send Test Result:
           <%= link_to user.name,
               contenedors_path(sender_id: current_user.id,
                                 recipient_id: user.id), method: 'post'%>

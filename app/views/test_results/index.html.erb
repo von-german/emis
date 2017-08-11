@@ -8,13 +8,12 @@
       <% user = User.find(test_result.user_id) %>
       <div class="item">
         <div class="content">
-          <div class="header"><strong> test_result from: <%= user.name%></strong>.<br>
-            <strong>Date of Visit:</strong></div>
+          <div class="header"><strong> Test Result From: <%= user.name%></strong>.<br>
           <div class="list">
             <div class="item">
               <i class="right triangle icon"></i>
-              <strong>  test type : </strong><%= test_result.test_type %><br>
-              <strong> test info: </strong><%= test_result.test_info %>
+              <strong>  Test Type: </strong><%= test_result.test_type %><br>
+              <strong> Test Info: </strong><%= test_result.test_info %>
             </div>
             <div>
               <br>
@@ -30,10 +29,10 @@
   <div class="field">
 
 
-      <%= f.label :test_type %>
+      <%= f.label :test_type, "Test Type" %>
       <%= f.text_field :test_type, class: 'form-control' %>
 
-      <%= f.label :test_info %>
+      <%= f.label :test_info, "Test Info" %>
       <%= f.text_area :test_info, class: 'form-control' %>
   </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
