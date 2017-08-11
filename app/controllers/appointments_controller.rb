@@ -4,17 +4,21 @@ class AppointmentsController < ApplicationController
 
   def index
     @upcoming_appointments = current_user.upcoming_appointments
+    authorize Appointment
   end
 
   def show
+    authorize Appointment
   end
 
   def new
     @appointments = current_user.appointments.select { |a| a.persisted? }
     @appointment = current_user.appointments.build
+    authorize Appointment
   end
 
   def create
+    authorize Appointment
     @appointment = Appointment.new(appointment_params.merge(user_id: current_user.id))
     if @appointment.valid?
       @appointment.save
@@ -30,6 +34,7 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    authorize Appointment
     if @appointment.update(appointment_params)
       redirect_to appointments_path
     else
@@ -39,6 +44,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    authorize Appointment
     @appointment.destroy
     redirect_to appointments_path
   end
