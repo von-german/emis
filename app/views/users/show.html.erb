@@ -5,7 +5,10 @@
   <% if @user.user? %>
     <li><%= "Address: #{@user.address}" %></li>
     <li><%= "Date of Birth: #{@user.dob}" %></li>
+    <li><%= "Phone Number: #{@user.phone_number}" %></li>
     <li><%= "Insurance: #{@user.ins}" %></li>
+    <li><%= "Social Security Number: #{@user.ssn}" %></li>
+    <li><%= "Emergency Contact Name: #{@user.emer_contact_name}" %></li>
   <% end %>
   <% if not @user.user? %>
     <li><%= "Account Type: #{@user.role}"%></li>

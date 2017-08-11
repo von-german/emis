@@ -51,7 +51,9 @@ class UsersController < ApplicationController
                                     :password_confirmation,
                                     :ins, :address, :dob, :role,
                                     :b_pressure, :weight, :height,
-                                    :symptoms, :curr_condition)
+                                    :symptoms, :curr_condition,
+                                    :emer_contact_name, :emer_contact_phone,
+                                    :ssn, :phone_number)
     end
 
     def logged_in_user
