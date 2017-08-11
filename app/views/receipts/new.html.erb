@@ -7,7 +7,7 @@
     <%= render partial: "layouts/errors", locals: { object: @receipt } %>
 
       <%= f.label :amount_owed, "Total price" %>
-      <%= f.number_field :amount_owed, class: :text_field, step: :any %>
+      <%= f.number_field :amount_owed, class: 'form-control', step: :any %>
 
       <%= f.label :items %>
       <%= f.text_field :items, class: 'form-control' %>

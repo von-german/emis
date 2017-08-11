@@ -3,7 +3,6 @@
     <%= link_to "Doctor Love Medical", '#', id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", home_path %></li>
         <% if logged_in? %>
           <%= render 'layouts/navbar-loggedin' %>
         <% else %>
