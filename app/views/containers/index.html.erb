@@ -1,3 +1,4 @@
+<% provide(:title, "Receipts") %>
 <div class="ui segment">
   <h3>Receipts</h3>
   <div class="ui list">
@@ -27,7 +28,7 @@
     <% @users.each do |user| %>
       <% if user.role%>
         <div class="item">
-          Send receipt to: 
+          Send receipt to:
           <%= link_to user.name,
               containers_path(sender_id: current_user.id,
                                 recipient_id: user.id), method: 'post'%>

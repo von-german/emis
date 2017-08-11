@@ -1,5 +1,6 @@
+<% provide(:title, "Diagnoses") %>
 <div class="ui segment">
-  <h3>Your Diagnosis</h3>
+  <h3>Your Diagnoses</h3>
   <div class="ui list">
       <% @holders.each do |holder| %>
         <% if holder.sender_id == current_user.id || holder.recipient_id == current_user.id %>
