@@ -11,4 +11,8 @@
     <li><%= "Account Type: #{@user.role}"%></li>
   <% end %>
     <li><%= "User ID: #{@user.id}"%></li>
+    <br>
+    <li><li>
 </ul>
+<div class="edit-btn"><%= button_to "Edit Profile", edit_user_path,
+          :class => "btn btn-primary", :method => :get %></div>
