@@ -1,0 +1,10 @@
+<% if @current_user.user? || @current_user.receptionist? %>
+  <%= f.label :address %>
+  <%= f.text_field :address, class: 'form-control' %>
+
+  <%= f.label :dateOfBirth, "Date of Birth" %>
+  <%= f.date_field :dob, class: 'form-control' %>
+
+  <%= f.label :insurance %>
+  <%= f.text_field :ins, class: 'form-control' %>
+<% end %>

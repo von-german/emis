@@ -10,5 +10,8 @@
       <%= link_to("Delete User", user_path(user), :data => { :confirm => "Are you sure?" },
           :method => :delete, :class => 'button') unless user == current_user %>
     <% end %>
+    <% if @current_user.receptionist? || @current_user.nurse? || @current_user.doctor? %>
+      <%= link_to("Edit Chart", edit_user_path(user),:class => 'button') unless user == current_user %>
+    <% end %>
   </ul>
 </td>

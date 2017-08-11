@@ -18,7 +18,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    @current_user.admin? || @current_user == @user
+    @current_user.admin? || @current_user == @user || @current_user.nurse? || @current_user.doctor? || @current_user.receptionist?
   end
 
   def destroy?

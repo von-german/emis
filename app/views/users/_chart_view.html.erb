@@ -1,0 +1,18 @@
+<% if (@current_user.nurse? || @current_user.doctor?) && @current_user != @user %>
+  <h1>Edit Patient Chart</h1>
+
+  <%= f.label :height, "Height" %>
+  <%= f.text_field :b_pressure, class: 'form-control' %>
+
+  <%= f.label :weight, "Weight" %>
+  <%= f.number_field :weight, class: 'form-control' %>
+
+  <%= f.label :b_pressure, "Blood Pressure" %>
+  <%= f.text_field :b_pressure, class: 'form-control' %>
+
+  <%= f.label :symptoms, "Symptoms" %>
+  <%= f.text_area :symptoms, class: 'form-control' %>
+
+  <%= f.label :curr_condition, "Current Condition" %>
+  <%= f.text_area :curr_condition, class: 'form-control' %>
+<% end %>

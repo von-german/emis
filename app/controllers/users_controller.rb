@@ -49,7 +49,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                     :password_confirmation,
-                                    :ins, :address, :dob, :role)
+                                    :ins, :address, :dob, :role,
+                                    :b_pressure, :weight, :height,
+                                    :symptons, :curr_condition)
     end
 
     def logged_in_user
@@ -62,6 +64,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user) || current_user.admin?
+      redirect_to(root_url) unless current_user?(@user) || current_user.admin? || current_user.doctor?  || current_user.nurse?  || current_user.receptionist?
     end
 end
