@@ -9,35 +9,31 @@
       <div class="item">
         <div class="content">
           <div class="header"><strong>Doctor <%= user.name%></strong>. Date of diagnosis: <%= prescription.prescription_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <strong> Drugs prescribed: </strong><%= prescription.drug %><br>
-              <strong> Condition: </strong><%= prescription.condition %>
-            </div>
-            <div>
-              <br>
-            </div>
+            <div class="list">
+              <div class="item">
+                <i class="right triangle icon"></i>
+                <strong> Drugs prescribed: </strong><%= prescription.drug %><br>
+                <strong> Condition: </strong><%= prescription.condition %>
+              </div>
+            <div> <br> </div>
           </div>
         </div>
       </div>
     <% end %>
   <% end %>
 </div>
-<% if current_user.role == @doctor %>
+<% if current_user.doctor? %>
 <%= form_for [@holder, @prescription], html: {class: "ui reply form"} do |f| %>
   <div class="field">
+    <%= f.label :drug %>
+    <%= f.text_field :drug, class: 'form-control' %>
 
-
-      <%= f.label :drug %>
-      <%= f.text_field :drug, class: 'form-control' %>
-
-      <%= f.label :condition %>
-      <%= f.text_field :condition, class: 'form-control' %>
+    <%= f.label :condition %>
+    <%= f.text_field :condition, class: 'form-control' %>
   </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <div>
-    <%= f.submit "Diagnose", class: "ui blue labeled submit icon button" %>
+    <%= f.submit "Diagnose", class: "btn btn-primary" %>
   </div>
   <%end%>
 <% end %>
