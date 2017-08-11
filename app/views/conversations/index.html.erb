@@ -18,7 +18,11 @@
 </div>
 
 <div class="ui segment">
-  <h3>All Users</h3>
+  <% if current_user.receptionist? %>
+  <h3>Message Patient</h3>
+  <% else %>
+  <h3>Message Receptionists</h3>
+  <%end%>
   <div class="ui list">
     <% @users.each do |user| %>
       <% if user.role != current_user.role%>
