@@ -1,3 +1,5 @@
+If you want to skip the whole installation and only want to test the app you can go to https://doctorlovemedical.herokuapp.com/ for our live server
+
 Use:
 
 admin@gmail.com for administrator
