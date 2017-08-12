@@ -10,7 +10,7 @@ r@gmail.com for receptionist
  
 nurse@gmail.com for nurse
 
-the password for all this users is password
+the password for all these users is:password
 
 
 Installations steps for Linux with your terminal:
